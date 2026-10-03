@@ -13,12 +13,37 @@ const api = axios.create({
 
 export const sendContactMessage = async (contactData) => {
   try {
-    // Tries /contact endpoint first, falls back to /contacts if needed
     const res = await api.post('/contact', contactData);
     return res.data;
   } catch (err) {
     if (err.response && err.response.status === 404) {
       const fallbackRes = await api.post('/contacts', contactData);
+      return fallbackRes.data;
+    }
+    throw err;
+  }
+};
+
+export const getContacts = async () => {
+  try {
+    const res = await api.get('/contacts');
+    return res.data;
+  } catch (err) {
+    if (err.response && err.response.status === 404) {
+      const fallbackRes = await api.get('/contact');
+      return fallbackRes.data;
+    }
+    throw err;
+  }
+};
+
+export const deleteContact = async (id) => {
+  try {
+    const res = await api.delete(`/contacts/${id}`);
+    return res.data;
+  } catch (err) {
+    if (err.response && err.response.status === 404) {
+      const fallbackRes = await api.delete(`/contact/${id}`);
       return fallbackRes.data;
     }
     throw err;

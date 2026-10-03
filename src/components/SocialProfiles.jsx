@@ -1,5 +1,4 @@
 import { FiGithub, FiLinkedin, FiMail, FiArrowUpRight } from 'react-icons/fi';
-import { SiLeetcode, SiHackerrank, SiGeeksforgeeks } from 'react-icons/si';
 import { personalInfo } from '../data/portfolioData';
 
 export default function SocialProfiles() {
@@ -28,57 +27,33 @@ export default function SocialProfiles() {
       icon: <FiMail className="text-2xl text-red-500" />,
       tag: 'Direct Contact',
     },
-    {
-      name: 'LeetCode',
-      handle: 'Anandpalle',
-      desc: 'Algorithmic problem solving, data structures, and optimal time-space computational patterns.',
-      url: personalInfo.socials.leetcode,
-      icon: <SiLeetcode className="text-2xl text-amber-500" />,
-      tag: 'Algorithms & DSA',
-    },
-    {
-      name: 'HackerRank',
-      handle: 'Anandpalle',
-      desc: 'Java language proficiency challenges, problem solving, and SQL database assessments.',
-      url: personalInfo.socials.hackerrank,
-      icon: <SiHackerrank className="text-2xl text-emerald-500" />,
-      tag: 'Coding Assessments',
-    },
-    {
-      name: 'GeeksforGeeks',
-      handle: 'Anandpalle',
-      desc: 'Core computer science fundamentals, Java memory model, and system design practices.',
-      url: personalInfo.socials.geeksforgeeks,
-      icon: <SiGeeksforgeeks className="text-2xl text-emerald-600" />,
-      tag: 'CS Fundamentals',
-    },
   ];
 
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-14 space-y-2">
+        <div className="text-center max-w-2xl mx-auto mb-12 space-y-2">
           <p className="text-blue-600 dark:text-blue-400 font-mono text-xs uppercase tracking-widest font-bold">
-            Public Presence & Coding Profiles
+            Profiles & Connections
           </p>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Developer & Problem-Solving Profiles
+            Developer & Professional Profiles
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-            Explore my code repositories, data structures practice, and professional networks.
+            Connect with me across GitHub, LinkedIn, or send an email directly.
           </p>
         </div>
 
         {/* Profiles Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-3 gap-6">
           {profileItems.map((item) => (
             <a
               key={item.name}
               href={item.url}
               target="_blank"
               rel="noreferrer"
-              className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
+              className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">

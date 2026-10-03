@@ -52,8 +52,7 @@ export default function Navbar() {
           </div>
           <div>
             <div className="font-bold text-base sm:text-lg text-slate-900 dark:text-white tracking-tight flex items-center gap-1">
-              <span>{personalInfo.name.split(' ')[0]}</span>
-              <span className="text-blue-500">.dev</span>
+              <span>{personalInfo.name}</span>
             </div>
             <div className="flex items-center gap-1.5 text-[10px] font-medium text-slate-500 dark:text-slate-400">
               <span

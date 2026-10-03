@@ -1,5 +1,4 @@
 import { FiGithub, FiLinkedin, FiMail, FiArrowUp } from 'react-icons/fi';
-import { SiLeetcode, SiHackerrank, SiGeeksforgeeks } from 'react-icons/si';
 import { personalInfo, navLinks } from '../data/portfolioData';
 
 export default function Footer() {
@@ -61,15 +60,13 @@ export default function Footer() {
               <FiLinkedin />
             </a>
           )}
-          {personalInfo.socials.leetcode && (
+          {personalInfo.socials.email && (
             <a
-              href={personalInfo.socials.leetcode}
-              target="_blank"
-              rel="noreferrer"
-              className="p-2 rounded-lg bg-white dark:bg-slate-900 hover:text-amber-500 border border-slate-200 dark:border-slate-800 transition"
-              aria-label="LeetCode"
+              href={personalInfo.socials.email}
+              className="p-2 rounded-lg bg-white dark:bg-slate-900 hover:text-blue-600 dark:hover:text-blue-400 border border-slate-200 dark:border-slate-800 transition"
+              aria-label="Email"
             >
-              <SiLeetcode />
+              <FiMail />
             </a>
           )}
           <button

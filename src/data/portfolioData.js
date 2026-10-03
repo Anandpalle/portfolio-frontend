@@ -13,9 +13,6 @@ export const personalInfo = {
     github: "https://github.com/Anandpalle",
     linkedin: "https://linkedin.com/in/anand-reddy-palle",
     email: "mailto:pallenanandreddy6@gmail.com",
-    leetcode: "https://leetcode.com/u/Anandpalle",
-    hackerrank: "https://hackerrank.com/profile/Anandpalle",
-    geeksforgeeks: "https://geeksforgeeks.org/user/Anandpalle",
   },
   techBadges: ["Java", "Spring Boot", "React", "JavaScript", "MySQL"],
 };
