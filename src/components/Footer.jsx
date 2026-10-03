@@ -7,28 +7,28 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800/80 py-12 px-4 sm:px-6 lg:px-8 text-slate-600 dark:text-slate-400 transition-colors duration-300">
+    <footer className="bg-white border-t border-slate-200 py-12 px-4 sm:px-6 lg:px-8 text-slate-700 transition-colors duration-300">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Left: Branding */}
         <div className="text-center md:text-left space-y-1">
-          <div className="text-slate-900 dark:text-white font-bold text-lg tracking-tight">
+          <div className="text-black font-black text-lg tracking-tight">
             {personalInfo.name}{' '}
-            <span className="text-blue-600 dark:text-blue-400 font-mono text-xs font-semibold">
+            <span className="text-blue-600 font-mono text-xs font-bold">
               — {personalInfo.role}
             </span>
           </div>
-          <p className="text-xs text-slate-500 dark:text-slate-400">
+          <p className="text-xs text-slate-600 font-normal">
             Architected with Spring Boot, Spring Data JPA, MySQL, React & Tailwind CSS.
           </p>
         </div>
 
         {/* Center: Navigation */}
-        <ul className="flex flex-wrap justify-center gap-5 text-xs font-semibold text-slate-600 dark:text-slate-400">
+        <ul className="flex flex-wrap justify-center gap-5 text-xs font-bold text-slate-700">
           {navLinks.map((link) => (
             <li key={link.name}>
               <a
                 href={link.href}
-                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                className="hover:text-blue-600 transition-colors"
               >
                 {link.name}
               </a>
@@ -43,7 +43,7 @@ export default function Footer() {
               href={personalInfo.socials.github}
               target="_blank"
               rel="noreferrer"
-              className="p-2 rounded-lg bg-white dark:bg-slate-900 hover:text-blue-600 dark:hover:text-blue-400 border border-slate-200 dark:border-slate-800 transition"
+              className="p-2 rounded-lg bg-slate-50 hover:text-blue-600 border border-slate-200 transition text-black"
               aria-label="GitHub"
             >
               <FiGithub />
@@ -54,7 +54,7 @@ export default function Footer() {
               href={personalInfo.socials.linkedin}
               target="_blank"
               rel="noreferrer"
-              className="p-2 rounded-lg bg-white dark:bg-slate-900 hover:text-blue-600 dark:hover:text-blue-400 border border-slate-200 dark:border-slate-800 transition"
+              className="p-2 rounded-lg bg-slate-50 hover:text-blue-600 border border-slate-200 transition text-black"
               aria-label="LinkedIn"
             >
               <FiLinkedin />
@@ -63,7 +63,7 @@ export default function Footer() {
           {personalInfo.socials.email && (
             <a
               href={personalInfo.socials.email}
-              className="p-2 rounded-lg bg-white dark:bg-slate-900 hover:text-blue-600 dark:hover:text-blue-400 border border-slate-200 dark:border-slate-800 transition"
+              className="p-2 rounded-lg bg-slate-50 hover:text-blue-600 border border-slate-200 transition text-black"
               aria-label="Email"
             >
               <FiMail />
@@ -71,7 +71,7 @@ export default function Footer() {
           )}
           <button
             onClick={scrollToTop}
-            className="p-2 rounded-lg bg-white dark:bg-slate-900 hover:text-blue-600 dark:hover:text-blue-400 border border-slate-200 dark:border-slate-800 transition cursor-pointer"
+            className="p-2 rounded-lg bg-slate-50 hover:text-blue-600 border border-slate-200 transition cursor-pointer text-black"
             aria-label="Back to Top"
           >
             <FiArrowUp />
@@ -79,7 +79,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto mt-8 pt-6 border-t border-slate-200 dark:border-slate-800/80 text-center text-xs text-slate-500 dark:text-slate-500">
+      <div className="max-w-6xl mx-auto mt-8 pt-6 border-t border-slate-200 text-center text-xs text-slate-500 font-medium">
         © {new Date().getFullYear()} {personalInfo.name}. All rights reserved.
       </div>
     </footer>

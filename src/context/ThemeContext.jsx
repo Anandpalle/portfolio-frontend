@@ -3,10 +3,10 @@ import { createContext, useContext, useEffect, useState } from 'react';
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
-  // Dark theme by default as requested
+  // Light theme default as requested (lite colors and black text)
   const [theme, setTheme] = useState(() => {
     const saved = localStorage.getItem('portfolio_theme');
-    return saved ? saved : 'dark';
+    return saved ? saved : 'light';
   });
 
   useEffect(() => {

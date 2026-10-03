@@ -1,22 +1,22 @@
-import { FiAward, FiExternalLink, FiCalendar, FiCheck } from 'react-icons/fi';
+import { FiAward, FiExternalLink } from 'react-icons/fi';
 import { certifications } from '../data/portfolioData';
 
 export default function Certifications() {
   return (
     <section
       id="certifications"
-      className="py-24 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-950 transition-colors duration-300"
+      className="py-24 px-4 sm:px-6 lg:px-8 bg-white border-t border-slate-200 transition-colors duration-300"
     >
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-          <p className="text-blue-600 dark:text-blue-400 font-mono text-xs uppercase tracking-widest font-bold">
+          <p className="text-blue-600 font-mono text-xs uppercase tracking-widest font-bold">
             Verified Competencies
           </p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-black text-black tracking-tight">
             Certifications
           </h2>
-          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base">
+          <p className="text-slate-700 text-sm sm:text-base font-normal">
             Professional credentials in full-stack Java development, relational databases, and enterprise REST APIs.
           </p>
         </div>
@@ -26,41 +26,41 @@ export default function Certifications() {
           {certifications.map((cert) => (
             <div
               key={cert.title}
-              className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 hover:shadow-md transition-all flex flex-col justify-between group"
+              className="p-6 rounded-2xl bg-slate-50 border border-slate-200 shadow-xs hover:border-blue-400 hover:shadow-md transition-all flex flex-col justify-between group"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center group-hover:scale-105 transition-transform">
+                  <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center group-hover:scale-105 transition-transform">
                     <FiAward className="text-xl" />
                   </div>
-                  <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+                  <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-white text-slate-700 border border-slate-200 font-bold">
                     {cert.date}
                   </span>
                 </div>
 
                 <div className="space-y-1">
-                  <h3 className="text-base font-bold text-slate-900 dark:text-white leading-snug">
+                  <h3 className="text-base font-black text-black leading-snug">
                     {cert.title}
                   </h3>
-                  <p className="text-xs font-medium text-blue-600 dark:text-blue-400">
+                  <p className="text-xs font-bold text-blue-700">
                     {cert.organization}
                   </p>
                 </div>
 
-                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p className="text-xs text-slate-700 leading-relaxed font-normal">
                   {cert.description}
                 </p>
               </div>
 
-              <div className="pt-5 mt-5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
-                  ID: <span className="text-slate-800 dark:text-slate-200 font-semibold">{cert.credentialId}</span>
+              <div className="pt-5 mt-5 border-t border-slate-200 flex items-center justify-between">
+                <div className="text-[11px] font-mono text-slate-600">
+                  ID: <span className="text-black font-bold">{cert.credentialId}</span>
                 </div>
                 <a
                   href={cert.link}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-1 text-xs font-semibold text-blue-600 dark:text-blue-400 hover:underline"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-blue-600 hover:underline"
                 >
                   <span>Verify</span>
                   <FiExternalLink className="text-[11px]" />

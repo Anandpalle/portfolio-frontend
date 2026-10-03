@@ -34,6 +34,12 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleNavigateToAdmin = () => {
+    window.history.pushState({}, '', '/admin');
+    setCurrentPath('/admin');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   // If user navigated directly to /admin, show Admin Dashboard
   const isAdminRoute = currentPath === '/admin' || currentPath.startsWith('/admin/');
 
@@ -42,7 +48,7 @@ function App() {
       {isAdminRoute ? (
         <Admin onBackToPortfolio={handleBackToPortfolio} />
       ) : (
-        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans selection:bg-blue-500/20 selection:text-blue-600 dark:selection:text-blue-400 transition-colors duration-300">
+        <div className="min-h-screen bg-white text-black font-sans selection:bg-blue-100 selection:text-blue-900 transition-colors duration-300">
           <Navbar />
           <main>
             <Hero />
@@ -54,7 +60,7 @@ function App() {
             <Certifications />
             <Resume />
             <SocialProfiles />
-            <Contact />
+            <Contact onNavigateToAdmin={handleNavigateToAdmin} />
           </main>
           <Footer />
         </div>

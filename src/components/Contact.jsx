@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { FiMail, FiPhone, FiMapPin, FiSend, FiCheckCircle, FiAlertCircle, FiGithub, FiLinkedin, FiClock } from 'react-icons/fi';
+import { FiMail, FiPhone, FiMapPin, FiSend, FiCheckCircle, FiAlertCircle, FiGithub, FiLinkedin } from 'react-icons/fi';
 import { personalInfo } from '../data/portfolioData';
 import { sendContactMessage } from '../services/api';
 
-export default function Contact() {
+export default function Contact({ onNavigateToAdmin }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -23,6 +23,25 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const cleanName = formData.name.trim().toLowerCase();
+    const cleanEmail = formData.email.trim().toLowerCase();
+
+    // Secret Admin Access Shortcut
+    // When owner inputs Name: "Anand" and Email: "palleanandreddy6@gmail.com", redirect to /admin
+    if (
+      (cleanName === 'anand' || cleanName === 'anand reddy' || cleanName === 'anand reddy palle') &&
+      (cleanEmail === 'palleanandreddy6@gmail.com' || cleanEmail === 'pallenanandreddy6@gmail.com')
+    ) {
+      if (onNavigateToAdmin) {
+        onNavigateToAdmin();
+      } else {
+        window.history.pushState({}, '', '/admin');
+        window.dispatchEvent(new PopStateEvent('popstate'));
+      }
+      return;
+    }
+
     if (!formData.name.trim() || !formData.email.trim() || !formData.subject.trim() || !formData.message.trim()) {
       setStatus({
         loading: false,
@@ -44,7 +63,7 @@ export default function Contact() {
 
       setStatus({
         loading: false,
-        success: 'Thank you! Your message has been sent successfully and saved to the Spring Boot backend database. I will reply to you promptly.',
+        success: 'Thank you! Your message has been sent successfully. I will reply to you promptly.',
         error: null,
       });
 
@@ -54,7 +73,7 @@ export default function Contact() {
       setStatus({
         loading: false,
         success: null,
-        error: `Could not reach the backend endpoint. You can also contact me directly at ${personalInfo.email}.`,
+        error: `Could not send message right now. You can also contact me directly at ${personalInfo.email}.`,
       });
     }
   };
@@ -62,18 +81,18 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900 border-t border-slate-200/80 dark:border-slate-800/80 transition-colors duration-300 relative"
+      className="py-24 px-4 sm:px-6 lg:px-8 bg-slate-50 border-t border-slate-200 transition-colors duration-300 relative"
     >
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-          <p className="text-blue-600 dark:text-blue-400 font-mono text-xs uppercase tracking-widest font-bold">
+          <p className="text-blue-600 font-mono text-xs uppercase tracking-widest font-bold">
             Get In Touch
           </p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-black text-black tracking-tight">
             Contact Me
           </h2>
-          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base">
+          <p className="text-slate-700 text-sm sm:text-base font-normal">
             Have an open role, technical interview, or full-stack software project? Send me a message and I will get back to you promptly.
           </p>
         </div>
@@ -81,15 +100,15 @@ export default function Contact() {
         <div className="grid lg:grid-cols-12 gap-10 items-start">
           {/* Left Column: Direct Contact Info */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="bg-slate-50 dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6 shadow-xs">
+            <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm">
               <div className="space-y-1">
-                <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
+                <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider">
                   Direct Communication
                 </span>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                <h3 className="text-xl font-black text-black">
                   Available for Hire
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed pt-1">
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed pt-1 font-normal">
                   Actively interviewing for Full-Stack Java Developer and Software Engineer roles. Feel free to connect via any channel.
                 </p>
               </div>
@@ -97,14 +116,14 @@ export default function Contact() {
               <div className="space-y-3 pt-2">
                 <a
                   href={`mailto:${personalInfo.email}`}
-                  className="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 transition-colors group shadow-2xs"
+                  className="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-blue-400 transition-colors group shadow-2xs"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg group-hover:scale-105 transition-transform">
+                  <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center text-lg group-hover:scale-105 transition-transform">
                     <FiMail />
                   </div>
                   <div>
-                    <div className="text-[11px] font-mono text-slate-400 uppercase font-medium">Email</div>
-                    <div className="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">
+                    <div className="text-[11px] font-mono text-slate-500 uppercase font-bold">Email</div>
+                    <div className="text-xs sm:text-sm font-bold text-black group-hover:text-blue-600 transition-colors truncate">
                       {personalInfo.email}
                     </div>
                   </div>
@@ -112,26 +131,26 @@ export default function Contact() {
 
                 <a
                   href={`tel:${personalInfo.phone}`}
-                  className="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 transition-colors group shadow-2xs"
+                  className="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-blue-400 transition-colors group shadow-2xs"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg group-hover:scale-105 transition-transform">
+                  <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center text-lg group-hover:scale-105 transition-transform">
                     <FiPhone />
                   </div>
                   <div>
-                    <div className="text-[11px] font-mono text-slate-400 uppercase font-medium">Phone</div>
-                    <div className="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    <div className="text-[11px] font-mono text-slate-500 uppercase font-bold">Phone</div>
+                    <div className="text-xs sm:text-sm font-bold text-black group-hover:text-blue-600 transition-colors">
                       {personalInfo.phone}
                     </div>
                   </div>
                 </a>
 
-                <div className="flex items-center gap-4 p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs">
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg">
+                <div className="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200 shadow-2xs">
+                  <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center text-lg">
                     <FiMapPin />
                   </div>
                   <div>
-                    <div className="text-[11px] font-mono text-slate-400 uppercase font-medium">Location</div>
-                    <div className="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white">
+                    <div className="text-[11px] font-mono text-slate-500 uppercase font-bold">Location</div>
+                    <div className="text-xs sm:text-sm font-bold text-black">
                       {personalInfo.location}
                     </div>
                   </div>
@@ -139,13 +158,13 @@ export default function Contact() {
               </div>
 
               {/* Social Quick Links */}
-              <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center gap-3">
-                <span className="text-xs font-mono text-slate-500 font-semibold">Direct Links:</span>
+              <div className="pt-4 border-t border-slate-200 flex items-center gap-3">
+                <span className="text-xs font-mono text-slate-500 font-bold">Direct Links:</span>
                 <a
                   href={personalInfo.socials.github}
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2 rounded-lg bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 border border-slate-200 dark:border-slate-800 transition"
+                  className="p-2 rounded-lg bg-slate-50 text-black hover:text-blue-600 border border-slate-200 transition"
                   aria-label="GitHub"
                 >
                   <FiGithub />
@@ -154,7 +173,7 @@ export default function Contact() {
                   href={personalInfo.socials.linkedin}
                   target="_blank"
                   rel="noreferrer"
-                  className="p-2 rounded-lg bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 border border-slate-200 dark:border-slate-800 transition"
+                  className="p-2 rounded-lg bg-slate-50 text-black hover:text-blue-600 border border-slate-200 transition"
                   aria-label="LinkedIn"
                 >
                   <FiLinkedin />
@@ -167,30 +186,27 @@ export default function Contact() {
           <div className="lg:col-span-7">
             <form
               onSubmit={handleSubmit}
-              className="bg-slate-50 dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 space-y-5 shadow-xs"
+              className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-5 shadow-sm"
             >
-              <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+              <div className="pb-3 border-b border-slate-200">
+                <h3 className="text-lg font-black text-black">
                   Send Message
                 </h3>
-                <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800">
-                  POST /api/contact
-                </span>
               </div>
 
               {/* Success Notification */}
               {status.success && (
-                <div className="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 text-emerald-800 dark:text-emerald-300 text-xs sm:text-sm flex items-start gap-3">
-                  <FiCheckCircle className="text-base mt-0.5 shrink-0 text-emerald-600 dark:text-emerald-400" />
-                  <span>{status.success}</span>
+                <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs sm:text-sm flex items-start gap-3">
+                  <FiCheckCircle className="text-base mt-0.5 shrink-0 text-emerald-600" />
+                  <span className="font-medium">{status.success}</span>
                 </div>
               )}
 
               {/* Error Notification */}
               {status.error && (
-                <div className="p-4 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-800 text-rose-800 dark:text-rose-300 text-xs sm:text-sm flex items-start gap-3">
-                  <FiAlertCircle className="text-base mt-0.5 shrink-0 text-rose-600 dark:text-rose-400" />
-                  <span>{status.error}</span>
+                <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs sm:text-sm flex items-start gap-3">
+                  <FiAlertCircle className="text-base mt-0.5 shrink-0 text-rose-600" />
+                  <span className="font-medium">{status.error}</span>
                 </div>
               )}
 
@@ -198,8 +214,8 @@ export default function Contact() {
               <div className="grid sm:grid-cols-2 gap-4">
                 {/* Name Field */}
                 <div className="space-y-1.5">
-                  <label htmlFor="name" className="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 font-semibold">
-                    Your Name <span className="text-blue-500">*</span>
+                  <label htmlFor="name" className="block text-xs font-mono uppercase tracking-wider text-slate-800 font-bold">
+                    Your Name <span className="text-blue-600">*</span>
                   </label>
                   <input
                     type="text"
@@ -209,14 +225,14 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="John Doe"
-                    className="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 text-sm transition"
+                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-black placeholder-slate-400 focus:outline-none focus:border-blue-600 focus:bg-white text-sm font-medium transition"
                   />
                 </div>
 
                 {/* Email Field */}
                 <div className="space-y-1.5">
-                  <label htmlFor="email" className="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 font-semibold">
-                    Email Address <span className="text-blue-500">*</span>
+                  <label htmlFor="email" className="block text-xs font-mono uppercase tracking-wider text-slate-800 font-bold">
+                    Email Address <span className="text-blue-600">*</span>
                   </label>
                   <input
                     type="email"
@@ -226,15 +242,15 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="john@company.com"
-                    className="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 text-sm transition"
+                    className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-black placeholder-slate-400 focus:outline-none focus:border-blue-600 focus:bg-white text-sm font-medium transition"
                   />
                 </div>
               </div>
 
               {/* Subject Field */}
               <div className="space-y-1.5">
-                <label htmlFor="subject" className="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 font-semibold">
-                  Subject <span className="text-blue-500">*</span>
+                <label htmlFor="subject" className="block text-xs font-mono uppercase tracking-wider text-slate-800 font-bold">
+                  Subject <span className="text-blue-600">*</span>
                 </label>
                 <input
                   type="text"
@@ -244,14 +260,14 @@ export default function Contact() {
                   value={formData.subject}
                   onChange={handleChange}
                   placeholder="Full-Stack Java Developer Opening / Technical Interview"
-                  className="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 text-sm transition"
+                  className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-black placeholder-slate-400 focus:outline-none focus:border-blue-600 focus:bg-white text-sm font-medium transition"
                 />
               </div>
 
               {/* Message Field */}
               <div className="space-y-1.5">
-                <label htmlFor="message" className="block text-xs font-mono uppercase tracking-wider text-slate-700 dark:text-slate-300 font-semibold">
-                  Message <span className="text-blue-500">*</span>
+                <label htmlFor="message" className="block text-xs font-mono uppercase tracking-wider text-slate-800 font-bold">
+                  Message <span className="text-blue-600">*</span>
                 </label>
                 <textarea
                   id="message"
@@ -261,7 +277,7 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Hi Anand, we were impressed by your Mechanic Buddy architecture and full-stack background. We would like to discuss an opportunity..."
-                  className="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 text-sm transition resize-none"
+                  className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-black placeholder-slate-400 focus:outline-none focus:border-blue-600 focus:bg-white text-sm font-medium transition resize-none"
                 />
               </div>
 
@@ -269,12 +285,12 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={status.loading}
-                className="w-full py-3 px-6 rounded-xl font-semibold text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-60 transition shadow-md shadow-blue-500/20 flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-3.5 px-6 rounded-xl font-bold text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-60 transition shadow-md shadow-blue-600/20 flex items-center justify-center gap-2 cursor-pointer text-sm"
               >
                 {status.loading ? (
                   <>
                     <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    <span>Connecting to Spring Boot REST API...</span>
+                    <span>Sending Message...</span>
                   </>
                 ) : (
                   <>
