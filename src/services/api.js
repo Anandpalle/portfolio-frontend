@@ -11,29 +11,18 @@ const api = axios.create({
   timeout: 15000,
 });
 
-export const getProjects = async () => {
-  try {
-    const res = await api.get('/projects');
-    return res.data;
-  } catch (err) {
-    console.warn('Backend /projects fetch fallback:', err.message);
-    return null;
-  }
-};
-
-export const getSkills = async () => {
-  try {
-    const res = await api.get('/skills');
-    return res.data;
-  } catch (err) {
-    console.warn('Backend /skills fetch fallback:', err.message);
-    return null;
-  }
-};
-
 export const sendContactMessage = async (contactData) => {
-  const res = await api.post('/contacts', contactData);
-  return res.data;
+  try {
+    // Tries /contact endpoint first, falls back to /contacts if needed
+    const res = await api.post('/contact', contactData);
+    return res.data;
+  } catch (err) {
+    if (err.response && err.response.status === 404) {
+      const fallbackRes = await api.post('/contacts', contactData);
+      return fallbackRes.data;
+    }
+    throw err;
+  }
 };
 
 export const checkHealth = async () => {

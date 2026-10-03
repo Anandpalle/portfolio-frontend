@@ -1,100 +1,124 @@
-import { useState } from 'react';
-import { FiLayers, FiDatabase, FiLayout, FiTool } from 'react-icons/fi';
-import { skillCategories } from '../data/portfolioData';
+import { FaJava, FaCss3Alt } from 'react-icons/fa';
+import {
+  SiJavascript,
+  SiHtml5,
+  SiReact,
+  SiTailwindcss,
+  SiSpringboot,
+  SiMysql,
+  SiGit,
+  SiGithub,
+  SiPostman,
+  SiIntellijidea,
+} from 'react-icons/si';
+import { FiDatabase, FiServer, FiLayers, FiCode, FiTerminal } from 'react-icons/fi';
+import { technicalSkills } from '../data/portfolioData';
 
 export default function Skills() {
-  const [activeTab, setActiveTab] = useState(0);
-
-  const icons = [
-    <FiLayers className="text-lg" />,
-    <FiDatabase className="text-lg" />,
-    <FiLayout className="text-lg" />,
-    <FiTool className="text-lg" />,
-  ];
+  const getSkillIcon = (name) => {
+    switch (name) {
+      case 'Java':
+        return <FaJava className="text-orange-500 text-lg" />;
+      case 'JavaScript':
+        return <SiJavascript className="text-yellow-400 text-lg" />;
+      case 'HTML5':
+        return <SiHtml5 className="text-orange-600 text-lg" />;
+      case 'CSS3':
+        return <FaCss3Alt className="text-blue-500 text-lg" />;
+      case 'React.js':
+        return <SiReact className="text-cyan-400 text-lg" />;
+      case 'Tailwind CSS':
+        return <SiTailwindcss className="text-cyan-500 text-lg" />;
+      case 'Spring Boot':
+        return <SiSpringboot className="text-emerald-500 text-lg" />;
+      case 'Spring Data JPA':
+        return <FiLayers className="text-emerald-400 text-lg" />;
+      case 'REST API':
+        return <FiServer className="text-blue-400 text-lg" />;
+      case 'J2EE':
+        return <FaJava className="text-red-400 text-lg" />;
+      case 'MySQL':
+        return <SiMysql className="text-blue-500 text-lg" />;
+      case 'Git':
+        return <SiGit className="text-orange-600 text-lg" />;
+      case 'GitHub':
+        return <SiGithub className="text-slate-800 dark:text-slate-200 text-lg" />;
+      case 'Postman':
+        return <SiPostman className="text-orange-500 text-lg" />;
+      case 'VS Code':
+        return <FiCode className="text-blue-500 text-lg" />;
+      case 'IntelliJ IDEA':
+        return <SiIntellijidea className="text-purple-500 text-lg" />;
+      default:
+        return <FiTerminal className="text-slate-400 text-lg" />;
+    }
+  };
 
   return (
-    <section id="skills" className="py-24 px-4 sm:px-6 lg:px-8 bg-white relative">
-      <div className="max-w-7xl mx-auto">
+    <section
+      id="skills"
+      className="py-24 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-950 transition-colors duration-300"
+    >
+      <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <p className="text-blue-600 font-mono text-xs uppercase tracking-widest font-bold">
-            Technical Stack
+          <p className="text-blue-600 dark:text-blue-400 font-mono text-xs uppercase tracking-widest font-bold">
+            Technical Proficiency
           </p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
-            Skills & <span className="text-blue-600">Expertise</span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Categorized Core Competencies
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base">
-            Technologies and frameworks I utilize to architect and deliver full-stack systems.
+          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base">
+            Structured full-stack skills spanning modern frontend development, backend Java architectures, database engineering, and developer toolchains.
           </p>
         </div>
 
-        {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12">
-          {skillCategories.map((cat, idx) => (
-            <button
-              key={cat.category}
-              onClick={() => setActiveTab(idx)}
-              className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-2.5 cursor-pointer ${
-                activeTab === idx
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-600/20'
-                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200'
-              }`}
-            >
-              {icons[idx]}
-              <span>{cat.category}</span>
-            </button>
-          ))}
-        </div>
-
-        {/* Active Category Skills Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
-          {skillCategories[activeTab].skills.map((skill) => (
+        {/* Categories Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {technicalSkills.map((cat) => (
             <div
-              key={skill.name}
-              className="p-5 rounded-xl bg-slate-50 border border-slate-200 hover:border-blue-400 hover:bg-white transition-all duration-300 flex items-center justify-between group shadow-2xs hover:shadow-sm"
+              key={cat.category}
+              className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 shadow-xs hover:border-blue-500/50 hover:shadow-md transition-all duration-300 flex flex-col justify-between"
             >
-              <div className="flex items-center gap-3">
-                <span className="w-2.5 h-2.5 rounded-full bg-blue-600 group-hover:scale-125 transition" />
-                <span className="text-sm font-semibold text-slate-800 group-hover:text-slate-950 transition">
-                  {skill.name}
-                </span>
+              <div>
+                {/* Category Header */}
+                <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-100 dark:border-slate-800">
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-blue-500" />
+                    <span>{cat.category}</span>
+                  </h3>
+                  <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+                    {cat.skills.length} items
+                  </span>
+                </div>
+
+                {/* Skills List */}
+                <div className="space-y-3">
+                  {cat.skills.map((skill) => (
+                    <div
+                      key={skill.name}
+                      className="p-3 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-100 dark:border-slate-800/80 hover:bg-slate-100/70 dark:hover:bg-slate-800/50 transition-colors"
+                    >
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="flex items-center gap-2.5">
+                          <div className="shrink-0">{getSkillIcon(skill.name)}</div>
+                          <span className="text-sm font-semibold text-slate-800 dark:text-slate-200">
+                            {skill.name}
+                          </span>
+                        </div>
+                        <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-md bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">
+                          {skill.level}
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-slate-500 dark:text-slate-400 pl-7 leading-normal">
+                        {skill.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <span className="text-xs font-mono font-medium px-2.5 py-1 rounded-md bg-white text-blue-700 border border-slate-200">
-                {skill.level}
-              </span>
             </div>
           ))}
-        </div>
-
-        {/* All skills quick snapshot badges */}
-        <div className="mt-16 pt-10 border-t border-slate-200 max-w-5xl mx-auto text-center">
-          <p className="text-xs font-mono uppercase tracking-wider text-slate-500 font-semibold mb-6">
-            Core Technology Snapshot
-          </p>
-          <div className="flex flex-wrap justify-center gap-2.5">
-            {[
-              'Java 21',
-              'Spring Boot 3',
-              'Spring Data JPA',
-              'Hibernate',
-              'RESTful APIs',
-              'PostgreSQL',
-              'MySQL 8',
-              'Docker',
-              'Render Cloud',
-              'React 19',
-              'Tailwind CSS',
-              'Maven',
-              'Git & GitHub',
-            ].map((t) => (
-              <span
-                key={t}
-                className="px-3.5 py-1.5 rounded-lg bg-slate-100 text-xs font-semibold text-slate-700 border border-slate-200 hover:border-blue-300 hover:text-blue-700 transition"
-              >
-                {t}
-              </span>
-            ))}
-          </div>
         </div>
       </div>
     </section>

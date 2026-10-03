@@ -1,4 +1,5 @@
 import { FiGithub, FiLinkedin, FiMail, FiArrowUp } from 'react-icons/fi';
+import { SiLeetcode, SiHackerrank, SiGeeksforgeeks } from 'react-icons/si';
 import { personalInfo, navLinks } from '../data/portfolioData';
 
 export default function Footer() {
@@ -7,26 +8,29 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-slate-100 border-t border-slate-200 py-12 px-4 sm:px-6 lg:px-8 text-slate-600">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+    <footer className="bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800/80 py-12 px-4 sm:px-6 lg:px-8 text-slate-600 dark:text-slate-400 transition-colors duration-300">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Left: Branding */}
         <div className="text-center md:text-left space-y-1">
-          <div className="text-slate-900 font-bold text-lg tracking-tight">
+          <div className="text-slate-900 dark:text-white font-bold text-lg tracking-tight">
             {personalInfo.name}{' '}
-            <span className="text-blue-600 font-mono text-sm font-semibold">
+            <span className="text-blue-600 dark:text-blue-400 font-mono text-xs font-semibold">
               — {personalInfo.role}
             </span>
           </div>
-          <p className="text-xs text-slate-500">
-            Engineered with Spring Boot 3, PostgreSQL, Docker, React & Tailwind CSS.
+          <p className="text-xs text-slate-500 dark:text-slate-400">
+            Architected with Spring Boot, Spring Data JPA, MySQL, React & Tailwind CSS.
           </p>
         </div>
 
         {/* Center: Navigation */}
-        <ul className="flex flex-wrap justify-center gap-6 text-xs font-semibold text-slate-600">
+        <ul className="flex flex-wrap justify-center gap-5 text-xs font-semibold text-slate-600 dark:text-slate-400">
           {navLinks.map((link) => (
             <li key={link.name}>
-              <a href={link.href} className="hover:text-blue-600 transition">
+              <a
+                href={link.href}
+                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
                 {link.name}
               </a>
             </li>
@@ -34,49 +38,51 @@ export default function Footer() {
         </ul>
 
         {/* Right: Social & Back to Top */}
-        <div className="flex items-center gap-3">
-          {personalInfo.github && (
+        <div className="flex items-center gap-2">
+          {personalInfo.socials.github && (
             <a
-              href={personalInfo.github}
+              href={personalInfo.socials.github}
               target="_blank"
               rel="noreferrer"
-              className="p-2.5 rounded-lg bg-white hover:text-blue-600 border border-slate-200 shadow-2xs transition"
-              title="GitHub"
+              className="p-2 rounded-lg bg-white dark:bg-slate-900 hover:text-blue-600 dark:hover:text-blue-400 border border-slate-200 dark:border-slate-800 transition"
+              aria-label="GitHub"
             >
               <FiGithub />
             </a>
           )}
-          {personalInfo.linkedin && (
+          {personalInfo.socials.linkedin && (
             <a
-              href={personalInfo.linkedin}
+              href={personalInfo.socials.linkedin}
               target="_blank"
               rel="noreferrer"
-              className="p-2.5 rounded-lg bg-white hover:text-blue-600 border border-slate-200 shadow-2xs transition"
-              title="LinkedIn"
+              className="p-2 rounded-lg bg-white dark:bg-slate-900 hover:text-blue-600 dark:hover:text-blue-400 border border-slate-200 dark:border-slate-800 transition"
+              aria-label="LinkedIn"
             >
               <FiLinkedin />
             </a>
           )}
-          {personalInfo.email && (
+          {personalInfo.socials.leetcode && (
             <a
-              href={`mailto:${personalInfo.email}`}
-              className="p-2.5 rounded-lg bg-white hover:text-blue-600 border border-slate-200 shadow-2xs transition"
-              title="Email"
+              href={personalInfo.socials.leetcode}
+              target="_blank"
+              rel="noreferrer"
+              className="p-2 rounded-lg bg-white dark:bg-slate-900 hover:text-amber-500 border border-slate-200 dark:border-slate-800 transition"
+              aria-label="LeetCode"
             >
-              <FiMail />
+              <SiLeetcode />
             </a>
           )}
           <button
             onClick={scrollToTop}
-            className="p-2.5 rounded-lg bg-white hover:text-blue-600 hover:border-blue-300 border border-slate-200 shadow-2xs transition cursor-pointer"
-            title="Back to Top"
+            className="p-2 rounded-lg bg-white dark:bg-slate-900 hover:text-blue-600 dark:hover:text-blue-400 border border-slate-200 dark:border-slate-800 transition cursor-pointer"
+            aria-label="Back to Top"
           >
             <FiArrowUp />
           </button>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto mt-8 pt-6 border-t border-slate-200 text-center text-xs text-slate-500">
+      <div className="max-w-6xl mx-auto mt-8 pt-6 border-t border-slate-200 dark:border-slate-800/80 text-center text-xs text-slate-500 dark:text-slate-500">
         © {new Date().getFullYear()} {personalInfo.name}. All rights reserved.
       </div>
     </footer>
