@@ -15,7 +15,7 @@ export default function Resume() {
           </div>
 
           <div className="space-y-2">
-            <h2 className="text-3xl sm:text-4xl font-black text-black tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-bold text-black tracking-tight">
               Download My Resume
             </h2>
             <p className="text-sm sm:text-base text-slate-700 max-w-xl mx-auto leading-relaxed font-normal">

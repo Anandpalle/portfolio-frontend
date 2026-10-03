@@ -89,7 +89,7 @@ export default function Contact({ onNavigateToAdmin }) {
           <p className="text-blue-600 font-mono text-xs uppercase tracking-widest font-bold">
             Get In Touch
           </p>
-          <h2 className="text-3xl sm:text-4xl font-black text-black tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-black tracking-tight">
             Contact Me
           </h2>
           <p className="text-slate-700 text-sm sm:text-base font-normal">
@@ -105,7 +105,7 @@ export default function Contact({ onNavigateToAdmin }) {
                 <span className="text-xs font-mono font-bold text-blue-700 uppercase tracking-wider">
                   Direct Communication
                 </span>
-                <h3 className="text-xl font-black text-black">
+                <h3 className="text-xl font-semibold text-black">
                   Available for Hire
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-700 leading-relaxed pt-1 font-normal">
@@ -189,7 +189,7 @@ export default function Contact({ onNavigateToAdmin }) {
               className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-5 shadow-sm"
             >
               <div className="pb-3 border-b border-slate-200">
-                <h3 className="text-lg font-black text-black">
+                <h3 className="text-lg font-semibold text-black">
                   Send Message
                 </h3>
               </div>

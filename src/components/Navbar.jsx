@@ -45,7 +45,7 @@ export default function Navbar() {
             <FiCode className="text-lg" />
           </div>
           <div>
-            <div className="font-extrabold text-base sm:text-lg text-black tracking-tight">
+            <div className="font-bold text-base sm:text-lg text-black tracking-tight">
               {personalInfo.name}
             </div>
           </div>

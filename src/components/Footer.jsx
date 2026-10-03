@@ -11,7 +11,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Left: Branding */}
         <div className="text-center md:text-left space-y-1">
-          <div className="text-black font-black text-lg tracking-tight">
+          <div className="text-black font-bold text-lg tracking-tight">
             {personalInfo.name}{' '}
             <span className="text-blue-600 font-mono text-xs font-bold">
               — {personalInfo.role}

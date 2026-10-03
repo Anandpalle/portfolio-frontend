@@ -65,7 +65,7 @@ export default function Skills() {
           <p className="text-blue-600 font-mono text-xs uppercase tracking-widest font-bold">
             Technical Proficiency
           </p>
-          <h2 className="text-3xl sm:text-4xl font-black text-black tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-black tracking-tight">
             Categorized Core Competencies
           </h2>
           <p className="text-slate-700 text-sm sm:text-base font-normal">
@@ -83,7 +83,7 @@ export default function Skills() {
               <div>
                 {/* Category Header */}
                 <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-200">
-                  <h3 className="text-base font-black text-black flex items-center gap-2">
+                  <h3 className="text-base font-semibold text-black flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-blue-600" />
                     <span>{cat.category}</span>
                   </h3>

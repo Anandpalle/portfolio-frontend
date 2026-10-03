@@ -37,7 +37,7 @@ export default function SocialProfiles() {
           <p className="text-blue-600 font-mono text-xs uppercase tracking-widest font-bold">
             Profiles & Connections
           </p>
-          <h2 className="text-2xl sm:text-3xl font-black text-black tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-bold text-black tracking-tight">
             Developer & Professional Profiles
           </h2>
           <p className="text-xs sm:text-sm text-slate-700 font-normal">
@@ -65,7 +65,7 @@ export default function SocialProfiles() {
                   </span>
                 </div>
 
-                <h3 className="text-base font-black text-black group-hover:text-blue-600 transition-colors flex items-center gap-1.5">
+                <h3 className="text-base font-semibold text-black group-hover:text-blue-600 transition-colors flex items-center gap-1.5">
                   <span>{item.name}</span>
                   <FiArrowUpRight className="text-sm opacity-60 group-hover:opacity-100 transition-opacity" />
                 </h3>

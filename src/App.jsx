@@ -15,37 +15,56 @@ import Footer from './components/Footer';
 import Admin from './components/Admin';
 
 function App() {
+  const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(() => {
+    return sessionStorage.getItem('portfolio_admin_auth') === 'true';
+  });
+
   const [currentPath, setCurrentPath] = useState(
     typeof window !== 'undefined' ? window.location.pathname : '/'
   );
 
   useEffect(() => {
+    // Remove direct URL access: redirect directly to home if not authenticated via secret form trigger
+    if ((window.location.pathname === '/admin' || window.location.pathname.startsWith('/admin/')) && !isAdminAuthenticated) {
+      window.history.replaceState({}, '', '/');
+      setCurrentPath('/');
+    }
+
     const handlePopState = () => {
-      setCurrentPath(window.location.pathname);
+      if ((window.location.pathname === '/admin' || window.location.pathname.startsWith('/admin/')) && !isAdminAuthenticated) {
+        window.history.replaceState({}, '', '/');
+        setCurrentPath('/');
+      } else {
+        setCurrentPath(window.location.pathname);
+      }
     };
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
+  }, [isAdminAuthenticated]);
 
   const handleBackToPortfolio = () => {
+    sessionStorage.removeItem('portfolio_admin_auth');
+    setIsAdminAuthenticated(false);
     window.history.pushState({}, '', '/');
     setCurrentPath('/');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleNavigateToAdmin = () => {
+    sessionStorage.setItem('portfolio_admin_auth', 'true');
+    setIsAdminAuthenticated(true);
     window.history.pushState({}, '', '/admin');
     setCurrentPath('/admin');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // If user navigated directly to /admin, show Admin Dashboard
-  const isAdminRoute = currentPath === '/admin' || currentPath.startsWith('/admin/');
+  // Only show Admin Dashboard if authenticated through secret form
+  const showAdmin = isAdminAuthenticated && (currentPath === '/admin' || currentPath.startsWith('/admin/'));
 
   return (
     <ThemeProvider>
-      {isAdminRoute ? (
+      {showAdmin ? (
         <Admin onBackToPortfolio={handleBackToPortfolio} />
       ) : (
         <div className="min-h-screen bg-white text-black font-sans selection:bg-blue-100 selection:text-blue-900 transition-colors duration-300">

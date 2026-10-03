@@ -13,7 +13,7 @@ export default function Experience() {
           <p className="text-blue-600 font-mono text-xs uppercase tracking-widest font-bold">
             Professional Trajectory
           </p>
-          <h2 className="text-3xl sm:text-4xl font-black text-black tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-black tracking-tight">
             Work Experience
           </h2>
           <p className="text-slate-700 text-sm sm:text-base font-normal">
@@ -34,7 +34,7 @@ export default function Experience() {
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                     <span>{item.status}</span>
                   </div>
-                  <h3 className="text-lg sm:text-xl font-black text-black pt-1">
+                  <h3 className="text-lg sm:text-xl font-semibold text-black pt-1">
                     {item.role}
                   </h3>
                 </div>

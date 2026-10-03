@@ -33,15 +33,15 @@ export default function Hero() {
           {/* Salutation & Role */}
           <div className="space-y-2">
             <h2 className="text-lg sm:text-xl font-mono text-slate-700">
-              Hi, I'm <span className="font-extrabold text-black">{personalInfo.name}</span>
+              Hi, I'm <span className="font-bold text-black">{personalInfo.name}</span>
             </h2>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-black tracking-tight leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-black tracking-tight leading-tight">
               Full-Stack <span className="text-blue-600">Java Developer</span>
             </h1>
           </div>
 
           {/* Headline */}
-          <p className="text-lg sm:text-xl font-bold text-black leading-snug">
+          <p className="text-lg sm:text-xl font-semibold text-black leading-snug">
             "{personalInfo.headline}"
           </p>
 
@@ -143,7 +143,7 @@ export default function Hero() {
                   e.target.parentNode.innerHTML += `
                     <div class="w-64 sm:w-72 md:w-80 h-80 sm:h-92 md:h-96 flex flex-col items-center justify-center bg-slate-100 text-slate-800 rounded-xl p-6 text-center">
                       <div class="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center mb-4 text-3xl font-bold text-blue-600">AP</div>
-                      <h3 class="font-extrabold text-lg text-black">${personalInfo.name}</h3>
+                      <h3 class="font-bold text-lg text-black">${personalInfo.name}</h3>
                       <p class="text-xs text-slate-600 mt-1">${personalInfo.role}</p>
                     </div>
                   `;

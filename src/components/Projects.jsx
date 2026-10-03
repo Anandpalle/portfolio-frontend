@@ -32,10 +32,10 @@ export default function Projects() {
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-mono font-bold tracking-widest uppercase">
             Featured Full-Stack Project
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-black tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black tracking-tight">
             {mechanicBuddyData.title}
           </h2>
-          <p className="text-lg font-bold text-blue-600">
+          <p className="text-lg font-semibold text-blue-600">
             {mechanicBuddyData.tagline}
           </p>
           <p className="text-slate-700 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed font-normal">
@@ -47,7 +47,7 @@ export default function Projects() {
             {mechanicBuddyData.techStack.map((tech) => (
               <span
                 key={tech}
-                className="px-3 py-1 rounded-lg text-xs font-mono font-bold bg-white text-black border border-slate-200 shadow-2xs"
+                className="px-3 py-1 rounded-lg text-xs font-mono font-medium bg-white text-black border border-slate-200 shadow-2xs"
               >
                 {tech}
               </span>
@@ -60,7 +60,7 @@ export default function Projects() {
               href={mechanicBuddyData.githubUrl}
               target="_blank"
               rel="noreferrer"
-              className="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-black text-white font-bold text-sm transition-all flex items-center gap-2 shadow-sm"
+              className="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-black text-white font-semibold text-sm transition-all flex items-center gap-2 shadow-sm"
             >
               <FiGithub className="text-base" />
               <span>View Source Code</span>
@@ -71,19 +71,10 @@ export default function Projects() {
                 e.preventDefault();
                 setIsCaseStudyOpen(true);
               }}
-              className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm transition-all flex items-center gap-2 shadow-md shadow-blue-600/20 cursor-pointer"
+              className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm transition-all flex items-center gap-2 shadow-md shadow-blue-600/20 cursor-pointer"
             >
               <FiFileText className="text-base" />
               <span>View Case Study</span>
-            </a>
-            <a
-              href="https://anand-reddy-palle.vercel.app"
-              target="_blank"
-              rel="noreferrer"
-              className="px-5 py-2.5 rounded-xl bg-white text-black hover:bg-slate-50 font-bold text-sm transition-all flex items-center gap-2 border border-slate-300 shadow-2xs"
-            >
-              <FiExternalLink className="text-base text-blue-600" />
-              <span>Live Platform Details</span>
             </a>
           </div>
         </div>
@@ -91,7 +82,7 @@ export default function Projects() {
         {/* 1. PROJECT ARCHITECTURE: 3 MAIN ROLES */}
         <div className="space-y-6">
           <div className="text-center max-w-xl mx-auto space-y-1">
-            <h3 className="text-2xl font-black text-black">
+            <h3 className="text-2xl font-bold text-black">
               Multi-Role Platform Architecture
             </h3>
             <p className="text-xs sm:text-sm text-slate-600">
@@ -126,7 +117,7 @@ export default function Projects() {
                 <span className="text-xs font-mono font-bold px-2.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700">
                   {activeRoleData.badge}
                 </span>
-                <h4 className="text-xl font-black text-black mt-2">
+                <h4 className="text-xl font-bold text-black mt-2">
                   {activeRoleData.name} Workspace
                 </h4>
               </div>
@@ -142,7 +133,7 @@ export default function Projects() {
                   className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200"
                 >
                   <FiCheckCircle className="text-emerald-600 text-base shrink-0 mt-0.5" />
-                  <span className="text-xs sm:text-sm font-bold text-black">
+                  <span className="text-xs sm:text-sm font-semibold text-black">
                     {feat}
                   </span>
                 </div>
@@ -154,7 +145,7 @@ export default function Projects() {
         {/* 2. PROJECT FEATURES (13 Features) */}
         <div className="space-y-8">
           <div className="text-center max-w-xl mx-auto space-y-1">
-            <h3 className="text-2xl font-black text-black">
+            <h3 className="text-2xl font-bold text-black">
               Core Platform Capabilities
             </h3>
             <p className="text-xs sm:text-sm text-slate-600">
@@ -171,7 +162,7 @@ export default function Projects() {
                 <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 mb-3 group-hover:scale-110 transition-transform">
                   <FiLayers className="text-base" />
                 </div>
-                <h4 className="text-sm font-black text-black mb-1">
+                <h4 className="text-sm font-semibold text-black mb-1">
                   {feat.title}
                 </h4>
                 <p className="text-xs text-slate-700 leading-relaxed font-normal">
@@ -185,7 +176,7 @@ export default function Projects() {
         {/* 3. PROJECT WORKFLOW (10-Step Interactive Workflow) */}
         <div className="space-y-8">
           <div className="text-center max-w-xl mx-auto space-y-1">
-            <h3 className="text-2xl font-black text-black">
+            <h3 className="text-2xl font-bold text-black">
               End-to-End Service Workflow
             </h3>
             <p className="text-xs sm:text-sm text-slate-600">
@@ -201,14 +192,14 @@ export default function Projects() {
               >
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="font-mono text-xs font-black text-blue-700 px-2 py-0.5 rounded bg-blue-50 border border-blue-200">
+                    <span className="font-mono text-xs font-bold text-blue-700 px-2 py-0.5 rounded bg-blue-50 border border-blue-200">
                       {item.step}
                     </span>
                     {idx < mechanicBuddyData.workflow.length - 1 && (
                       <span className="text-slate-400 text-xs hidden lg:inline font-bold">→</span>
                     )}
                   </div>
-                  <h4 className="text-xs sm:text-sm font-black text-black mb-1">
+                  <h4 className="text-xs sm:text-sm font-semibold text-black mb-1">
                     {item.title}
                   </h4>
                   <p className="text-[11px] text-slate-600 leading-snug">
@@ -223,7 +214,7 @@ export default function Projects() {
         {/* 4. SYSTEM ARCHITECTURE DIAGRAM */}
         <div className="space-y-8">
           <div className="text-center max-w-xl mx-auto space-y-1">
-            <h3 className="text-2xl font-black text-black">
+            <h3 className="text-2xl font-bold text-black">
               Layered System Architecture
             </h3>
             <p className="text-xs sm:text-sm text-slate-600">
@@ -279,7 +270,7 @@ export default function Projects() {
         {/* 5. PROJECT SCREENSHOT GALLERY (9 Interfaces) */}
         <div className="space-y-8">
           <div className="text-center max-w-xl mx-auto space-y-1">
-            <h3 className="text-2xl font-black text-black">
+            <h3 className="text-2xl font-bold text-black">
               Application Interfaces & Views
             </h3>
             <p className="text-xs sm:text-sm text-slate-600">
@@ -348,7 +339,7 @@ export default function Projects() {
               <span className="text-xs font-mono font-bold text-blue-600 uppercase tracking-widest">
                 Comprehensive Case Study
               </span>
-              <h3 className="text-2xl sm:text-3xl font-black text-black mt-1">
+              <h3 className="text-2xl sm:text-3xl font-bold text-black mt-1">
                 Mechanic Buddy — Engineering Deep Dive
               </h3>
             </div>

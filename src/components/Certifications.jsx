@@ -13,7 +13,7 @@ export default function Certifications() {
           <p className="text-blue-600 font-mono text-xs uppercase tracking-widest font-bold">
             Verified Competencies
           </p>
-          <h2 className="text-3xl sm:text-4xl font-black text-black tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-black tracking-tight">
             Certifications
           </h2>
           <p className="text-slate-700 text-sm sm:text-base font-normal">
@@ -39,7 +39,7 @@ export default function Certifications() {
                 </div>
 
                 <div className="space-y-1">
-                  <h3 className="text-base font-black text-black leading-snug">
+                  <h3 className="text-base font-semibold text-black leading-snug">
                     {cert.title}
                   </h3>
                   <p className="text-xs font-bold text-blue-700">

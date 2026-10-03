@@ -20,7 +20,7 @@ export default function About() {
           <p className="text-blue-600 font-mono text-xs uppercase tracking-widest font-bold">
             About Me
           </p>
-          <h2 className="text-3xl sm:text-4xl font-black text-black tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-black tracking-tight">
             Engineering Purposeful Full-Stack Solutions
           </h2>
           <p className="text-slate-700 text-sm sm:text-base leading-relaxed font-normal">
@@ -59,7 +59,7 @@ export default function About() {
               key={item.label}
               className="p-5 rounded-2xl bg-white border border-slate-200 text-center relative overflow-hidden shadow-xs hover:border-blue-400 hover:shadow-sm transition-all"
             >
-              <div className="text-2xl sm:text-3xl font-black text-blue-600 font-mono">
+              <div className="text-2xl sm:text-3xl font-bold text-blue-600 font-mono">
                 {item.value}
               </div>
               <div className="text-xs sm:text-sm font-bold text-black mt-1">

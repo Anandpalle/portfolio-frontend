@@ -13,7 +13,7 @@ export default function Education() {
           <p className="text-blue-600 font-mono text-xs uppercase tracking-widest font-bold">
             Academic Background
           </p>
-          <h2 className="text-3xl sm:text-4xl font-black text-black tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-black tracking-tight">
             Education
           </h2>
           <p className="text-slate-700 text-sm sm:text-base font-normal">
@@ -34,7 +34,7 @@ export default function Education() {
                     {item.badge}
                   </span>
                 </div>
-                <h3 className="text-base sm:text-lg font-black text-black">
+                <h3 className="text-base sm:text-lg font-semibold text-black">
                   {item.degree}
                 </h3>
                 <p className="text-xs sm:text-sm font-semibold text-slate-800">
@@ -55,7 +55,7 @@ export default function Education() {
               <div className="sm:text-right shrink-0">
                 <div className="inline-flex sm:flex sm:flex-col items-center sm:items-end gap-1 px-4 py-2 rounded-xl bg-slate-50 border border-slate-200 shadow-2xs">
                   <span className="text-xs text-slate-500 font-mono uppercase tracking-wider font-bold">Score</span>
-                  <span className="text-sm sm:text-base font-black font-mono text-blue-700">
+                  <span className="text-sm sm:text-base font-bold font-mono text-blue-700">
                     {item.score}
                   </span>
                 </div>
