@@ -53,9 +53,12 @@ export default function Contact({ onNavigateToAdmin }) {
 
     setStatus({ loading: true, success: null, error: null });
 
+    let emailSent = false;
+    let dbSaved = false;
+
+    // 1. Dispatch directly to Anand's inbox via FormSubmit
     try {
-      // 1. Dispatch email notification directly to Anand's inbox via FormSubmit
-      const emailPromise = fetch('https://formsubmit.co/ajax/pallenanandreddy6@gmail.com', {
+      const emailRes = await fetch('https://formsubmit.co/ajax/pallenanandreddy6@gmail.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -72,41 +75,57 @@ export default function Contact({ onNavigateToAdmin }) {
           _template: 'table',
           _captcha: 'false',
         }),
-      }).catch((err) => {
-        console.warn('FormSubmit email dispatch error:', err);
-        return null;
       });
 
-      // 2. Concurrently persist in database via Spring Boot backend API
-      const dbPromise = sendContactMessage({
+      const data = await emailRes.json().catch(() => ({}));
+      if (data && (data.success === 'true' || data.success === true)) {
+        emailSent = true;
+      }
+    } catch (err) {
+      console.warn('FormSubmit dispatch error:', err);
+    }
+
+    // 2. Persist in database via Spring Boot REST backend
+    try {
+      await sendContactMessage({
         name: formData.name.trim(),
         email: formData.email.trim(),
         subject: formData.subject.trim(),
         message: formData.message.trim(),
-      }).catch((err) => {
-        console.warn('Backend DB store error:', err);
-        return null;
       });
+      dbSaved = true;
+    } catch (err) {
+      console.warn('Backend database persist error:', err);
+    }
 
-      const [emailRes, dbRes] = await Promise.all([emailPromise, dbPromise]);
-
-      if (!emailRes && !dbRes) {
-        throw new Error('Both email and backend store failed.');
-      }
-
+    // If either the email service or backend DB succeeded, consider it a success
+    if (emailSent || dbSaved) {
       setStatus({
         loading: false,
-        success: 'Thank you! Your message has been sent successfully and delivered to my email inbox. I will reply to you promptly.',
+        success: 'Thank you! Your message has been received successfully and forwarded to my email inbox. I will reply to you promptly.',
         error: null,
       });
 
       setFormData({ name: '', email: '', subject: '', message: '' });
-    } catch (err) {
-      console.error('Contact submission error:', err);
+    } else {
+      const mailtoUrl = `mailto:${personalInfo.email}?subject=${encodeURIComponent(
+        formData.subject || 'Portfolio Inquiry'
+      )}&body=${encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      )}`;
+
       setStatus({
         loading: false,
         success: null,
-        error: `Could not send message automatically. You can write to me directly at ${personalInfo.email}.`,
+        error: (
+          <span>
+            Server is temporarily busy.{' '}
+            <a href={mailtoUrl} className="underline font-bold text-rose-800 hover:text-rose-900">
+              Click here to send directly via your email client
+            </a>{' '}
+            or write to {personalInfo.email}.
+          </span>
+        ),
       });
     }
   };
