@@ -54,16 +54,49 @@ export default function Contact({ onNavigateToAdmin }) {
     setStatus({ loading: true, success: null, error: null });
 
     try {
-      await sendContactMessage({
+      // 1. Dispatch email notification directly to Anand's inbox via FormSubmit
+      const emailPromise = fetch('https://formsubmit.co/ajax/pallenanandreddy6@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          subject: formData.subject.trim(),
+          message: formData.message.trim(),
+          _subject: `Portfolio Contact: ${formData.subject.trim()} (from ${formData.name.trim()})`,
+          _replyto: formData.email.trim(),
+          _cc: 'palleanandreddy6@gmail.com',
+          _template: 'table',
+          _captcha: 'false',
+        }),
+      }).catch((err) => {
+        console.warn('FormSubmit email dispatch error:', err);
+        return null;
+      });
+
+      // 2. Concurrently persist in database via Spring Boot backend API
+      const dbPromise = sendContactMessage({
         name: formData.name.trim(),
         email: formData.email.trim(),
         subject: formData.subject.trim(),
         message: formData.message.trim(),
+      }).catch((err) => {
+        console.warn('Backend DB store error:', err);
+        return null;
       });
+
+      const [emailRes, dbRes] = await Promise.all([emailPromise, dbPromise]);
+
+      if (!emailRes && !dbRes) {
+        throw new Error('Both email and backend store failed.');
+      }
 
       setStatus({
         loading: false,
-        success: 'Thank you! Your message has been sent successfully. I will reply to you promptly.',
+        success: 'Thank you! Your message has been sent successfully and delivered to my email inbox. I will reply to you promptly.',
         error: null,
       });
 
@@ -73,7 +106,7 @@ export default function Contact({ onNavigateToAdmin }) {
       setStatus({
         loading: false,
         success: null,
-        error: `Could not send message right now. You can also contact me directly at ${personalInfo.email}.`,
+        error: `Could not send message automatically. You can write to me directly at ${personalInfo.email}.`,
       });
     }
   };
