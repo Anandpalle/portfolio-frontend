@@ -11,7 +11,7 @@ export const personalInfo = {
   resumeUrl: "/ANAND_REDDY_PALLE_RESUME.pdf",
   socials: {
     github: "https://github.com/Anandpalle",
-    linkedin: "https://linkedin.com/in/anand-reddy-palle",
+    linkedin: "https://www.linkedin.com/in/anand-reddy-palle-01b07025b",
     email: "mailto:pallenanandreddy6@gmail.com",
   },
   techBadges: ["Java", "Spring Boot", "React", "JavaScript", "MySQL"],

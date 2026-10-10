@@ -13,7 +13,7 @@ export default function SocialProfiles() {
     },
     {
       name: 'LinkedIn',
-      handle: 'anand-reddy-palle',
+      handle: 'anand-reddy-palle-01b07025b',
       desc: 'Professional engineering network, technical credentials, and career updates.',
       url: personalInfo.socials.linkedin,
       icon: <FiLinkedin className="text-2xl text-blue-600" />,
